@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectors</title>
+    <style>
+        /* Task 1,2 css*/
+        .container{
+            border: 10px solid yellow;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            align-items: center;
+        }
+        li[class]{
+            color: red;
+        }
+        li[id]{
+            color: green;
+        } 
+        /* Task 3,4 css*/
+        .main-div>#first,#last{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            width: 100px;
+            background-color: greenyellow;
+            border: 5px solid red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!--Task 1,2-->
+    <div class="container">
+        <div>
+            <ul>
+                <li class="list">First</li>
+                <li>Second</li>
+                <li>Third</li>
+                <li>Fourth</li>
+                <li id="fifth">Fifth</li>
+            </ul>
+        </div>
+    </div> 
+    <!--Task 3,4-->
+    <div class="main-div">
+        <div id="first">
+            <p>React</p>
+        </div>
+        <div>
+            <p>Node</p>
+        </div>
+        <div>
+            <p>Express</p>
+        </div>
+        <div id="last">
+            <p>MongoDB</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Task</title>
+</head>
+<body>
+    <form action="" style="max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <label for="" style="display: block; margin-bottom: 10px;">First Name: </label>
+        <input type="text" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;"><br>
+        
+        <label for="" style="display: block; margin-bottom: 10px;">Last Name: </label>
+        <input type="text" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;"><br>
+        
+        <label for="" style="display: block; margin-bottom: 10px;">Gender: </label>
+        <input type="radio" name="gender">Male 
+        <input type="radio" name="gender">Female 
+        <input type="radio" name="gender">Others<br><br>
+        
+        <label for="" style="display: block; margin-bottom: 10px;">Hobbies: </label>
+        <input type="checkbox">Cricket
+        <input type="checkbox">Football
+        <input type="checkbox">Reading
+        <input type="checkbox">Travelling<br><br>
+        
+        <label for="" style="display: block; margin-bottom: 10px;">Date of Birth: </label>
+        <input type="date" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;"><br>
+        
+        <label for="age" style="display: block; margin-bottom: 10px;">Age:</label>
+        <input type="range" id="age" name="age" min="0" max="100" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;" oninput="this.nextElementSibling.value = this.value">
+        <output style="display: block; margin-bottom: 10px;">50</output><br>
+        
+        <label for="" style="display: block; margin-bottom: 10px;">Email:</label>
+        <input type="email" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;"><br>
+        
+        <label for="" style="display: block; margin-bottom: 10px;">Current Time</label>
+        <input type="time" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;"><br>
+        
+        <label for="" style="display: block; margin-bottom: 10px;">Current Week</label>
+        <input type="week" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        <button type="submit" style="width: 100%; padding: 10px; background-color: blue; color: white; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+    </form>
+</body>
+</html>
