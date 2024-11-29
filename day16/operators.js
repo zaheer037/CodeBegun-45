@@ -34,3 +34,49 @@ console.log("Multiplication Assignment :",num1*=3)
 console.log("Division Assignment :",num1/=3)
 console.log("Modular Assignment :",num1%=3)
 console.log("Exponential Assignment :",num1**=3)
+
+//3. Comparision Operators
+//==,!=,>,<,>=,<=,===,!==
+console.log("Check the Equal",num1==8)
+console.log("Not Equal",num1!=8)
+console.log("Greater than",num1>8)
+console.log("Less than",num1<8)
+console.log("Greater than or equal",num1>=8)
+console.log("Less than or equal",num1<=7)
+console.log("===",num1==="8")
+console.log("!==",num1!==8)
+
+//4. Logical Operators
+//&&, ||, !
+var a = 5;
+var b = 10;
+
+console.log("Logical AND (5 > 3 && 10 > 5):", a > 3 && b > 5); // true
+console.log("Logical AND (5 > 10 && 10 > 5):", a > 10 && b > 5); // false
+console.log("Logical OR (5 > 10 || 10 > 5):", a > 10 || b > 5); // true
+console.log("Logical OR (5 > 10 || 10 < 5):", a > 10 || b < 5); // false
+console.log("Logical NOT (!(5 > 3)):", !(a > 3)); // false
+console.log("Logical NOT (!(5 < 3)):", !(a < 3)); // true
+
+//5.Bitwise Operators
+//&, !, ^, ~, <<, >>, >>>
+
+console.log(5&3);
+console.log(5|3);
+console.log(5^3); //more used
+console.log(~3);
+console.log(5<<1);
+console.log(5>>1);
+console.log(-10>>>1);
+
+//6.String Operator
+//+
+var _myString1="Zah";
+var _myString2="eer";
+console.log(_myString1+_myString2)
+
+//7. Miscellanous
+//?:, typeof, instanceOf, void
+console.log(typeof _myString1)
+
+console.log((50>40)?"Pass":"Fail")
