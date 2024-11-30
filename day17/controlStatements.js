@@ -1,7 +1,13 @@
-var num1=1
-if(num1==1){
-    console.log("The number is 1")
+// if and else statements
+// if else if else statements
+
+// if statement 
+var _marks=25;
+if(_marks>24){
+    console.log("Pass!!")
+}else if(_marks==24){
+    console.log("Just Pass")
 }
 else{
-    console.log("The number is not 1")
+    console.log("Fail")
 }
