@@ -1,0 +1,42 @@
+body {
+    background-color: #f0f0f0;
+}
+
+.calculator {
+    width: 300px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+.display {
+    height: 70px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+button {
+    height: 60px;
+    font-size: 1.2rem;
+    border: none;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button.btn-info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+button.btn-dark {
+    background-color: #343a40;
+    color: white;
+}
+
+button.btn-warning {
+    background-color: #f7b924;
+    color: white;
+}
