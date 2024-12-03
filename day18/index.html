@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Functions</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
     <style>
+        div {
+            margin: 10px;
+        }
         div input{
             width: 245px;
             height: 30px;
@@ -21,7 +24,7 @@
 </head>
 
 <body>
-    <h2>Functions in JavaScript</h2>
+    <!-- <h2>Functions in JavaScript</h2>
     <div>
         <label for="firstname"></label>
         <input type="number" placeholder="Enter first value" id="firstvalue" name="firstvalue"><br>
@@ -33,11 +36,13 @@
     <div>
         <h3>Result:</h3>
         <span id="result"></span>
-    </div>
+    </div> -->
 
-    <div>
+    <div class="container" id="main-div">
         <h2 class="mx-5">Calculator</h2>
-        <div class="container"><input type="number" required><br></div>
+        <div class="form-group">
+            <input type="text" class="" id="result" disabled>
+        </div>
         <div class="container mt-3">
             <span><button>C</button></span>
             <span><button>-></button></span>
