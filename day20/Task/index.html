@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+     <style>
+        .main-div{
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            align-items: center;
+        }
+        form{
+            border: 1px solid black;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h2{
+            text-align: center;
+        }
+        label{
+            font-weight: bold;
+        }
+        input{
+            margin: 5px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+        button{
+            padding: 5px 10px;
+            background-color: rgb(13, 147, 161);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: rgb(69, 197, 26);
+        }
+
+     </style>
+</head>
+<body>
+    <div class="main-div">
+        <form action="#" method="post">
+            <h2>Registration Form</h2>
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" required><br><br>
+    
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" required><br><br>
+    
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" style="margin-left: 38px;" required><br><br>
+    
+            <label>Hobbies:</label><br>
+            <input type="checkbox" id="hobby1" name="hobbies" value="Reading">
+            <label for="hobby1">Reading</label><br>
+            <input type="checkbox" id="hobby2" name="hobbies" value="Traveling">
+            <label for="hobby2">Traveling</label><br>
+            <input type="checkbox" id="hobby3" name="hobbies" value="Cooking">
+            <label for="hobby3">Cooking</label><br>
+            <input type="checkbox" id="hobby4" name="hobbies" value="Sports">
+            <label for="hobby4">Sports</label><br><br>
+    
+            <label for="gender">Gender:</label><br>
+            <input type="radio" id="male" name="gender" value="male" required>
+            <label for="male">Male</label><br>
+            <input type="radio" id="female" name="gender" value="female" required>
+            <label for="female">Female</label><br>
+            <input type="radio" id="other" name="gender" value="other" required>
+            <label for="other">Other</label><br><br>
+            <label for="hobby1">Reading</label><br>
+            <input type="checkbox" id="hobby2" name="hobbies" value="Traveling">
+            <label for="hobby2">Traveling</label><br>
+            <input type="checkbox" id="hobby3" name="hobbies" value="Cooking">
+            <label for="hobby3">Cooking</label><br><br>
+    
+            <button >Submit</button>
+        </form>
+    </div>
+</body>
+</html>
