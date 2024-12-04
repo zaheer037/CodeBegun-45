@@ -40,6 +40,7 @@
 // var allows hoisting  // let does not allow hoisting
 
 
+
 // console.log(a);
 // var a;
 
