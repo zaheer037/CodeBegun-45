@@ -35,3 +35,8 @@ function removeElement(){
 }
 
 //removeElement();
+
+//task
+//html
+//form - dynamic (fn,ln,email,gender,hobbies,checkbox,submit)
+//on submit- table (ln,ln,email,bobbies,...),actions=>edit=>redirect to form,delete
