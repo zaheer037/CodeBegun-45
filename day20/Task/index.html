@@ -73,14 +73,13 @@
             <label for="female">Female</label><br>
             <input type="radio" id="other" name="gender" value="other" required>
             <label for="other">Other</label><br><br>
-            <label for="hobby1">Reading</label><br>
-            <input type="checkbox" id="hobby2" name="hobbies" value="Traveling">
-            <label for="hobby2">Traveling</label><br>
-            <input type="checkbox" id="hobby3" name="hobbies" value="Cooking">
-            <label for="hobby3">Cooking</label><br><br>
-    
-            <button >Submit</button>
+            <button onclick="retrieveData()">Submit</button>
         </form>
     </div>
+
+    <div id="output-div">
+        <table id="output-table"></table>
+    </div>
 </body>
+<script src="./task.js"></script>
 </html>
