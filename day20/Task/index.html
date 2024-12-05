@@ -45,7 +45,7 @@
 </head>
 <body>
     <div class="main-div">
-        <form action="#" method="post">
+        <form id="myForm" action="#" method="post">
             <h2>Registration Form</h2>
             <label for="firstname">First Name:</label>
             <input type="text" id="firstname" name="firstname" required><br><br>
@@ -73,7 +73,7 @@
             <label for="female">Female</label><br>
             <input type="radio" id="other" name="gender" value="other" required>
             <label for="other">Other</label><br><br>
-            <button onclick="retrieveData()">Submit</button>
+            <button id="submit-button" onclick="retrieveData()">Submit</button>
         </form>
     </div>
 
