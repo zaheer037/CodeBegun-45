@@ -1,8 +1,6 @@
-
 function insertIntoTable(fName, lName, mail, hobbies, gender) {
     var table = document.getElementById("output-table");
 
-    // Check if table headers already exist, if not, create them
     if (table.rows.length === 0) {
         var header = table.createTHead();
         var headerRow = header.insertRow(0);
@@ -28,7 +26,6 @@ function insertIntoTable(fName, lName, mail, hobbies, gender) {
     cell4.innerHTML = hobbies;
     cell5.innerHTML = gender;
 
-    // Create Edit and Delete buttons
     var editButton = document.createElement("button");
     editButton.innerHTML = "Edit";
     editButton.onclick = function () {
@@ -37,30 +34,29 @@ function insertIntoTable(fName, lName, mail, hobbies, gender) {
         document.getElementById("lastname").value = cells[1].innerHTML;
         document.getElementById("email").value = cells[2].innerHTML;
         
-        // Set hobbies checkboxes
         var hobbiesArray = cells[3].innerHTML.split(", ");
         document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
             checkbox.checked = hobbiesArray.includes(checkbox.value);
         });
 
-        // Set gender radio button
         document.querySelectorAll('input[name="gender"]').forEach(radio => {
             radio.checked = (radio.value === cells[4].innerHTML);
         });
 
-        // Remove the row being edited
         table.deleteRow(row.rowIndex);
 
-        //button color and text change
-        var submitButton=document.getElementById("submit-button");
-        submitButton.style.backgroundColor="orange"
-        submitButton.innerHTML="Update";
+        var submitButton = document.getElementById("submit-button");
+        submitButton.style.backgroundColor = "orange";
+        submitButton.innerHTML = "Update";
     };
-    var submitButton=document.getElementById("submit-button");
-    submitButton.style.backgroundColor="rgb(13, 147, 161)";
-    submitButton.innerHTML="submit";
+
+    var submitButton = document.getElementById("submit-button");
+    submitButton.style.backgroundColor = "rgb(13, 147, 161)";
+    submitButton.innerHTML = "submit";
+
     var deleteButton = document.createElement("button");
     deleteButton.innerHTML = "Delete";
+    deleteButton.style.marginLeft="10px"
     deleteButton.onclick = function () {
         table.deleteRow(row.rowIndex);
     };
@@ -68,7 +64,6 @@ function insertIntoTable(fName, lName, mail, hobbies, gender) {
     cell6.appendChild(editButton);
     cell6.appendChild(deleteButton);
 
-    // Apply border to the table
     table.style.border = "1px solid black";
     table.style.borderCollapse = "collapse";
     for (var i = 0; i < table.rows.length; i++) {
@@ -86,8 +81,13 @@ function retrieveData() {
     var mail = document.getElementById("email").value;
     var hobbies = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.value).join(", ");
     var gender = document.querySelector('input[name="gender"]:checked').value;
-
+   
+    //table creation
+    var output_div = document.getElementById("output-div");
+    var table=document.createElement("table");
+    table.setAttribute("id","output-table")
+    table.style.margin = "0 auto";
+    output_div.appendChild(table)
     insertIntoTable(fName, lName, mail, hobbies, gender);
-    // Reset the form
     document.getElementById("myForm").reset();
-};
+}
