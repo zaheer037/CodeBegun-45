@@ -33,7 +33,7 @@ function insertIntoTable(fName, lName, mail, hobbies, gender) {
         document.getElementById("firstname").value = cells[0].innerHTML;
         document.getElementById("lastname").value = cells[1].innerHTML;
         document.getElementById("email").value = cells[2].innerHTML;
-        
+
         var hobbiesArray = cells[3].innerHTML.split(", ");
         document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
             checkbox.checked = hobbiesArray.includes(checkbox.value);
@@ -56,7 +56,7 @@ function insertIntoTable(fName, lName, mail, hobbies, gender) {
 
     var deleteButton = document.createElement("button");
     deleteButton.innerHTML = "Delete";
-    deleteButton.style.marginLeft="10px"
+    deleteButton.style.marginLeft = "10px"
     deleteButton.onclick = function () {
         table.deleteRow(row.rowIndex);
     };
@@ -81,11 +81,11 @@ function retrieveData() {
     var mail = document.getElementById("email").value;
     var hobbies = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.value).join(", ");
     var gender = document.querySelector('input[name="gender"]:checked').value;
-   
+
     //table creation
     var output_div = document.getElementById("output-div");
-    var table=document.createElement("table");
-    table.setAttribute("id","output-table")
+    var table = document.createElement("table");
+    table.setAttribute("id", "output-table")
     table.style.margin = "0 auto";
     output_div.appendChild(table)
     insertIntoTable(fName, lName, mail, hobbies, gender);
