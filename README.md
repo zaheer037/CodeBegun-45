@@ -12,6 +12,4 @@ This repository is a part of the CodeBegun 45 internship training program focuse
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/zaheer037/CodeBegun-45.git# CodeBegun-45
-
-This Repo is based on the 45 internship training on React Development 
+   git clone https://github.com/zaheer037/CodeBegun-45.git
