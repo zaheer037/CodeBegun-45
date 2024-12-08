@@ -8,6 +8,7 @@ This repository is a part of the CodeBegun 45 internship training program focuse
 - **Exercises**: Hands-on exercises to practice React skills.
 - **Resources**: Additional resources for further learning.
 
+
 ## Getting Started
 
 1. **Clone the repository**:
