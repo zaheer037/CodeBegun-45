@@ -66,7 +66,6 @@ function step5() {
 
 //async and await
 
-
 async function promiseCall() {
     try {
         var step1results = await step1();
