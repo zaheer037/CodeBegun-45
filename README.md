@@ -1,6 +1,6 @@
 # CodeBegun-45
 
-This repository is a part of the CodeBegun 45 internship training program focused on React Development. It includes various projects, exercises, and resources to help interns gain practical experience in building applications using React.
+This repository is a part of the CodeBegun 45 internship training program focused on React Development. It includes various projects, exercises, and resources to help interns gain practical experience.
 
 ## Contents
 
