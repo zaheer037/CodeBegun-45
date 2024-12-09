@@ -67,7 +67,7 @@ function step5() {
 //async and await
 
 
-async function domywork() {
+async function promiseCall() {
     try {
         var step1results = await step1();
         console.log(step1results);
@@ -89,4 +89,4 @@ async function domywork() {
     }
 }
 
-domywork();
+promiseCall();
