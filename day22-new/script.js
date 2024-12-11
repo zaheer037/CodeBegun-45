@@ -21,8 +21,8 @@ console.log("Index of 'is':", text.indexOf("is"));
 console.log("Includes 'amazing':", text.includes("amazing"));
 
 // 3. Using template literals
-let name = "John";
-let age = 25;
+let name = "zaheer";
+let age = 20;
 console.log(`My name is ${name}, and I am ${age} years old.`);
 
 // Example: Array and String Conversions
@@ -39,22 +39,22 @@ console.log("Joined Sentence:", joinedSentence);
 
 // 1. Count word frequency in a sentence
 function countWordFrequency(sentence) {
-  let words = sentence.toLowerCase().split(" ");
-  let frequency = {};
-  words.forEach(word => {
-    frequency[word] = (frequency[word] || 0) + 1;
-  });
-  return frequency;
+    let words = sentence.toLowerCase().split(" ");
+    let frequency = {};
+    words.forEach(word => {
+        frequency[word] = (frequency[word] || 0) + 1;
+    });
+    return frequency;
 }
 
 console.log("Word Frequency:", countWordFrequency("JavaScript is fun and learning JavaScript is rewarding"));
 
 // 2. Reverse words in a sentence
 function reverseWords(sentence) {
-  return sentence
-    .split(" ")
-    .map(word => word.split("").reverse().join(""))
-    .join(" ");
+    return sentence
+        .split(" ")
+        .map(word => word.split("").reverse().join(""))
+        .join(" ");
 }
 
 console.log("Reversed Words:", reverseWords("JavaScript is amazing!"));
