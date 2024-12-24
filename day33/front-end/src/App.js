@@ -1,11 +1,16 @@
-//import './App.css';
-import Post from './components/Post';
+import React from 'react';
+import Header from "./components/Header";
+import Sidenav from './components/Sidenav';
+import Form from './components/Form';
+import Footer from './components/Footer';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Post/>
-      </header>
+    <div>
+      <Header />
+      <Sidenav />
+      <Form />
+      <Footer />
     </div>
   );
 }
