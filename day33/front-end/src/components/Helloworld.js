@@ -13,7 +13,7 @@ class Helloworld extends Component {
         this.setState({message : "Hello, codeBegun , I am doing Great",count:2});
     }
 
-    render(){
+    render(){ //render method is the only difference between fun and class components
         return(
             <div>
                 <h1>{this.state.message}</h1>
