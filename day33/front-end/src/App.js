@@ -3,14 +3,12 @@ import Header from "./components/Header";
 import Sidenav from './components/Sidenav';
 import Form from './components/Form';
 import Footer from './components/Footer';
+import Helloworld from './components/Helloworld';
 
 function App() {
   return (
     <div>
-      <Header />
-      <Sidenav />
-      <Form />
-      <Footer />
+      <Helloworld/>
     </div>
   );
 }
