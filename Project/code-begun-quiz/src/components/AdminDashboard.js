@@ -1,37 +1,29 @@
-import React, { useState } from "react";
-import QuizCreation from "./QuizCreation";
-import UserManagement from "./UserManagement";
+import React from "react";
 
-const AdminDashboard = () => {
-  const [showQuizCreation, setShowQuizCreation] = useState(false);
-  const [showUserManagement, setShowUserManagement] = useState(false);
-
-  const handleCreateUser = () => {
-    setShowUserManagement(true);
-    setShowQuizCreation(false);
-  };
-
-  const handleCreateQuiz = () => {
-    setShowQuizCreation(true);
-    setShowUserManagement(false);
-  };
+const AdminDashboard = ({ onCreateUser, onCreateQuiz, onLogout }) => {
+  const usersExist = JSON.parse(localStorage.getItem("users"))?.length > 0;
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 text-center">
       <h2>Admin Dashboard</h2>
-      <button className="btn btn-primary me-3" onClick={handleCreateUser}>
-        Create User
-      </button>
-      <button
-        className="btn btn-secondary"
-        onClick={handleCreateQuiz}
-        disabled={JSON.parse(localStorage.getItem("users"))?.length === 0}
-      >
-        Create Quiz
-      </button>
-
-      {showUserManagement && <UserManagement />}
-      {showQuizCreation && <QuizCreation />}
+      <div className="mt-4">
+        <button className="btn btn-primary me-3" onClick={onCreateUser}>
+          Create User
+        </button>
+        <button
+          className="btn btn-secondary me-3"
+          onClick={onCreateQuiz}
+          disabled={!usersExist}
+        >
+          Create Quiz
+        </button>
+        <button className="btn btn-danger" onClick={onLogout}>
+          Logout
+        </button>
+      </div>
+      {!usersExist && (
+        <p className="text-muted mt-3">Add users before creating a quiz.</p>
+      )}
     </div>
   );
 };

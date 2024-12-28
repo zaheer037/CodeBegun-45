@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import QuizPreview from "./QuizPreview"; // The preview component
+import QuizPreview from "./QuizPreview"; // Assuming this component displays the quiz preview
 
 const QuizCreation = () => {
   const [quizName, setQuizName] = useState(""); // Store quiz name
@@ -7,12 +7,17 @@ const QuizCreation = () => {
   const [questions, setQuestions] = useState([]); // Store the questions array
   const [previewMode, setPreviewMode] = useState(false); // Track preview mode state
 
-  // Add a new question
-  const handleAddQuestion = () => {
-    setQuestions([
-      ...questions,
-      { id: questions.length + 1, type: "MCQ", questionText: "", options: ["", "", "", ""], correctAnswer: "" },
-    ]);
+  // Handle number of questions change and generate that many empty questions
+  const handleNumQuestionsChange = (e) => {
+    const num = parseInt(e.target.value);
+    setNumQuestions(num);
+
+    // Generate empty questions based on the number entered
+    const newQuestions = [];
+    for (let i = 0; i < num; i++) {
+      newQuestions.push({ id: i + 1, type: "MCQ", questionText: "", options: ["", "", "", ""], correctAnswer: "" });
+    }
+    setQuestions(newQuestions);
   };
 
   // Handle changes in question details (text, type, options, etc.)
@@ -59,11 +64,9 @@ const QuizCreation = () => {
           className="form-control mb-2"
           placeholder="Number of Questions"
           value={numQuestions}
-          onChange={(e) => setNumQuestions(e.target.value)}
+          onChange={handleNumQuestionsChange}
+          min={1}
         />
-        <button className="btn btn-success mb-3" onClick={handleAddQuestion}>
-          Add Question
-        </button>
       </div>
 
       {/* Map over questions and allow editing */}

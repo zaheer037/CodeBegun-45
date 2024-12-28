@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 const UserQuizResult = () => {
   const [submittedAnswers, setSubmittedAnswers] = useState(null);
   const [quiz, setQuiz] = useState(null);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     const answers = JSON.parse(localStorage.getItem("submittedAnswers"));
@@ -13,6 +14,19 @@ const UserQuizResult = () => {
     }
   }, []);
 
+  const calculateScore = () => {
+    if (!quiz || !submittedAnswers) return;
+
+    let totalScore = 0;
+    quiz.questions.forEach((question) => {
+      if (submittedAnswers[question.id] === question.correctAnswer) {
+        totalScore += 1;
+      }
+    });
+
+    setScore(totalScore);
+  };
+
   if (!quiz || !submittedAnswers) {
     return <p>No quiz results to display.</p>;
   }
@@ -20,6 +34,12 @@ const UserQuizResult = () => {
   return (
     <div className="container mt-5">
       <h2>{quiz.quizName} - Results</h2>
+      <p>Score: {score}/{quiz.numQuestions}</p>
+      
+      <button className="btn btn-primary mb-4" onClick={calculateScore}>
+        Calculate Score
+      </button>
+
       <div className="list-group">
         {quiz.questions.map((q) => (
           <div key={q.id} className="list-group-item">
@@ -28,6 +48,9 @@ const UserQuizResult = () => {
             <p>
               <strong>Your Answer:</strong>{" "}
               {submittedAnswers[q.id] || "No answer provided"}
+            </p>
+            <p>
+              <strong>Correct Answer:</strong> {q.correctAnswer}
             </p>
           </div>
         ))}

@@ -11,8 +11,7 @@ const UserManagement = () => {
     username: "",
     password: "",
   });
-
-  const [editingUser, setEditingUser] = useState(null); // State for editing a user
+  const [editingIndex, setEditingIndex] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,44 +30,25 @@ const UserManagement = () => {
       return;
     }
 
-    // Add user logic
-    const updatedUsers = [...users, newUser];
-    setUsers(updatedUsers);
-    localStorage.setItem("users", JSON.stringify(updatedUsers));
-    setNewUser({ name: "", age: "", gender: "", username: "", password: "" });
-  };
-
-  const handleEditUser = (user) => {
-    setEditingUser(user);
-    setNewUser(user); // Pre-fill the form with the user's current data
-  };
-
-  const handleSaveEdit = () => {
-    if (
-      !newUser.name ||
-      !newUser.age ||
-      !newUser.gender ||
-      !newUser.username ||
-      !newUser.password
-    ) {
-      alert("Please fill all fields!");
-      return;
+    let updatedUsers;
+    if (editingIndex !== null) {
+      // Update existing user
+      updatedUsers = [...users];
+      updatedUsers[editingIndex] = newUser;
+      setEditingIndex(null);
+    } else {
+      // Add new user
+      updatedUsers = [...users, newUser];
     }
 
-    const updatedUsers = users.map((user) =>
-      user.username === editingUser.username ? newUser : user
-    );
     setUsers(updatedUsers);
     localStorage.setItem("users", JSON.stringify(updatedUsers));
-
-    // Reset the form and editing state
-    setEditingUser(null);
     setNewUser({ name: "", age: "", gender: "", username: "", password: "" });
   };
 
-  const handleCancelEdit = () => {
-    setEditingUser(null);
-    setNewUser({ name: "", age: "", gender: "", username: "", password: "" });
+  const handleEditUser = (index) => {
+    setNewUser(users[index]);
+    setEditingIndex(index);
   };
 
   const handleDeleteUser = (username) => {
@@ -80,8 +60,6 @@ const UserManagement = () => {
   return (
     <div className="container mt-5">
       <h2>User Management</h2>
-
-      {/* Add or Edit User Form */}
       <div className="mb-3">
         <input
           type="text"
@@ -125,20 +103,11 @@ const UserManagement = () => {
           value={newUser.password}
           onChange={handleInputChange}
         />
-        <button
-          className="btn btn-primary"
-          onClick={editingUser ? handleSaveEdit : handleAddUser}
-        >
-          {editingUser ? "Save Changes" : "Add User"}
+        <button className="btn btn-primary" onClick={handleAddUser}>
+          {editingIndex !== null ? "Update User" : "Add User"}
         </button>
-        {editingUser && (
-          <button className="btn btn-secondary ms-2" onClick={handleCancelEdit}>
-            Cancel
-          </button>
-        )}
       </div>
 
-      {/* Users Table */}
       <table className="table">
         <thead>
           <tr>
@@ -150,16 +119,16 @@ const UserManagement = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr key={user.username}>
+          {users.map((user, index) => (
+            <tr key={index}>
               <td>{user.name}</td>
               <td>{user.age}</td>
               <td>{user.gender}</td>
               <td>{user.username}</td>
               <td>
                 <button
-                  className="btn btn-warning btn-sm me-2"
-                  onClick={() => handleEditUser(user)}
+                  className="btn btn-info btn-sm me-2"
+                  onClick={() => handleEditUser(index)}
                 >
                   Edit
                 </button>
