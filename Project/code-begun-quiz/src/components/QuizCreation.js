@@ -3,19 +3,28 @@ import QuizPreview from "./QuizPreview"; // Assuming this component displays the
 
 const QuizCreation = () => {
   const [quizName, setQuizName] = useState(""); // Store quiz name
-  const [numQuestions, setNumQuestions] = useState(1); // Store number of questions
+  const [numQuestions, setNumQuestions] = useState(0); // Store number of questions
   const [questions, setQuestions] = useState([]); // Store the questions array
   const [previewMode, setPreviewMode] = useState(false); // Track preview mode state
+  const [selectedUser, setSelectedUser] = useState(""); // Store the selected user
+
+  // Fetch users from localStorage
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
   // Handle number of questions change and generate that many empty questions
   const handleNumQuestionsChange = (e) => {
-    const num = parseInt(e.target.value);
+    const num = parseInt(e.target.value, 10);
     setNumQuestions(num);
 
-    // Generate empty questions based on the number entered
     const newQuestions = [];
     for (let i = 0; i < num; i++) {
-      newQuestions.push({ id: i + 1, type: "MCQ", questionText: "", options: ["", "", "", ""], correctAnswer: "" });
+      newQuestions.push({
+        id: i + 1,
+        type: "MCQ",
+        questionText: "",
+        options: ["", "", "", ""],
+        correctAnswer: "",
+      });
     }
     setQuestions(newQuestions);
   };
@@ -31,21 +40,57 @@ const QuizCreation = () => {
 
   // Save quiz data to localStorage
   const handleSave = () => {
-    const quizData = { quizName, numQuestions, questions };
-    localStorage.setItem("quiz", JSON.stringify(quizData));
-    alert("Quiz saved!");
+    const quizData = {
+      quizName,
+      numQuestions,
+      questions,
+      isPublished: false,
+      assignedTo: selectedUser || null, // Associate user if selected
+    };
+
+    const existingQuizzes = JSON.parse(localStorage.getItem("quizzes")) || [];
+    localStorage.setItem("quizzes", JSON.stringify([...existingQuizzes, quizData]));
+    alert("Quiz saved as a draft!");
   };
 
   // Switch to preview mode
   const handlePreview = () => {
+    if (!quizName || questions.some((q) => !q.questionText)) {
+      alert("Please fill out all fields before previewing.");
+      return;
+    }
     setPreviewMode(true);
+  };
+
+  const handleBackFromPreview = () => {
+    setPreviewMode(false);
   };
 
   // Handle quiz publication
   const handlePublish = () => {
-    const quizData = { quizName, numQuestions, questions };
-    localStorage.setItem("quiz", JSON.stringify(quizData)); // Save to localStorage
+    if (!quizName || questions.some((q) => !q.questionText || !q.correctAnswer)) {
+      alert("Please complete all fields before publishing.");
+      return;
+    }
+
+    const quizData = {
+      quizName,
+      numQuestions,
+      questions,
+      isPublished: true,
+      assignedTo: selectedUser || null, // Associate user if selected
+    };
+
+    const existingQuizzes = JSON.parse(localStorage.getItem("quizzes")) || [];
+    localStorage.setItem("quizzes", JSON.stringify([...existingQuizzes, quizData]));
     alert("Quiz published successfully!");
+
+    // Clear the form
+    setQuizName("");
+    setNumQuestions(1);
+    setQuestions([]);
+    setSelectedUser("");
+    setPreviewMode(false);
   };
 
   return !previewMode ? (
@@ -67,6 +112,20 @@ const QuizCreation = () => {
           onChange={handleNumQuestionsChange}
           min={1}
         />
+
+        {/* User Assignment Dropdown */}
+        <select
+          className="form-control mb-2"
+          value={selectedUser}
+          onChange={(e) => setSelectedUser(e.target.value)}
+        >
+          <option value="">Assign to a User (Optional)</option>
+          {users.map((user, index) => (
+            <option key={index} value={user.username}>
+              {user.username}
+            </option>
+          ))}
+        </select>
       </div>
 
       {/* Map over questions and allow editing */}
@@ -81,7 +140,7 @@ const QuizCreation = () => {
             onChange={(e) => handleQuestionChange(q.id, "questionText", e.target.value)}
           />
           <select
-            className="form-control"
+            className="form-control mb-2"
             value={q.type}
             onChange={(e) => handleQuestionChange(q.id, "type", e.target.value)}
           >
@@ -131,7 +190,7 @@ const QuizCreation = () => {
       </div>
     </div>
   ) : (
-    <QuizPreview quiz={{ quizName, numQuestions, questions }} />
+    <QuizPreview quiz={{ quizName, numQuestions, questions, assignedTo: selectedUser }} onBack={handleBackFromPreview} />
   );
 };
 

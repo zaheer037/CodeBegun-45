@@ -6,15 +6,22 @@ const UserQuiz = () => {
   const [answers, setAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [score, setScore] = useState(0);
-
+  const username = JSON.parse(localStorage.getItem("quizzes"))[0].assignedTo; 
   useEffect(() => {
-    const savedQuiz = JSON.parse(localStorage.getItem("quiz"));
-    if (savedQuiz) {
-      setQuiz(savedQuiz);
-    } else {
-      alert("No published quiz available.");
+    if (!username) {
+      alert("No username provided.");
+      return;
     }
-  }, []);
+  
+    const quizzes = JSON.parse(localStorage.getItem("quizzes")) || [];
+    const userQuiz = quizzes.find((quiz) => quiz.assignedTo === username);
+  
+    if (userQuiz) {
+      setQuiz(userQuiz);
+    } else {
+      alert("No quiz available for you.");
+    }
+  }, [username]);
 
   const handleAnswerChange = (id, value) => {
     setAnswers({ ...answers, [id]: value });
@@ -33,7 +40,7 @@ const UserQuiz = () => {
 
     setScore(calculatedScore);
     alert(`Quiz submitted! Your score: ${calculatedScore}/${quiz.numQuestions}`);
-    localStorage.setItem("submittedAnswers", JSON.stringify(answers));
+    localStorage.setItem(`submittedAnswers`, JSON.stringify(answers));
   };
 
   if (!quiz || !quiz.questions?.length) return <p>Loading quiz...</p>;

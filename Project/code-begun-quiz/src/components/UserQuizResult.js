@@ -7,7 +7,7 @@ const UserQuizResult = () => {
 
   useEffect(() => {
     const answers = JSON.parse(localStorage.getItem("submittedAnswers"));
-    const quizData = JSON.parse(localStorage.getItem("quiz"));
+    const quizData = JSON.parse(localStorage.getItem("quizzes"));
     if (answers && quizData) {
       setSubmittedAnswers(answers);
       setQuiz(quizData);
