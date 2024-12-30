@@ -15,11 +15,11 @@ const QuizCreation = () => {
   const handleNumQuestionsChange = (e) => {
     const num = parseInt(e.target.value, 10);
     setNumQuestions(num);
-
+  
     const newQuestions = [];
     for (let i = 0; i < num; i++) {
       newQuestions.push({
-        id: i + 1,
+        id: `${Date.now()}-${i}`, // Unique ID generation
         type: "MCQ",
         questionText: "",
         options: ["", "", "", ""],
@@ -28,6 +28,7 @@ const QuizCreation = () => {
     }
     setQuestions(newQuestions);
   };
+  
 
   // Handle changes in question details (text, type, options, etc.)
   const handleQuestionChange = (id, field, value) => {
