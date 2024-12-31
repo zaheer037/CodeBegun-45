@@ -41,16 +41,6 @@ const QuizCreation = () => {
 
   // Save quiz data to localStorage
   const handleSave = () => {
-    // const quizData = {
-    //   quizName,
-    //   numQuestions,
-    //   questions,
-    //   isPublished: false,
-    //   assignedTo: selectedUser || null, // Associate user if selected
-    // };
-
-    //const existingQuizzes = JSON.parse(localStorage.getItem("quizzes")) || [];
-    //localStorage.setItem("quizzes", JSON.stringify([...existingQuizzes, quizData]));
     alert("Quiz saved as a draft!");
   };
 
@@ -132,7 +122,7 @@ const QuizCreation = () => {
       {/* Map over questions and allow editing */}
       {questions.map((q) => (
         <div key={q.id} className="mb-3">
-          <label>Question {q.id}</label>
+          <label>Question</label>
           <input
             type="text"
             className="form-control mb-2"
