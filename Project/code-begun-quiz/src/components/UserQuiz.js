@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./UserQuiz.css";
 
 const UserQuiz = () => {
   const [questions, setQuestions] = useState([]); // Store all questions here
-  const [answers, setAnswers] = React.useState({});
+  const [answers, setAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [score, setScore] = useState(0);
+  const navigate = useNavigate();
+  // Retrieve the logged-in user from localStorage
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-  // Extract username from localStorage
-  const users = JSON.parse(localStorage.getItem("users")) || [];
-  const loggedInUser = users.find((user) => user.name === "zaheer"); // Adjust the condition as needed
-  const username = loggedInUser ? loggedInUser.username : null;
-
-  if (!username) {
-    alert("No username found for the logged-in user.");
+  // Handle case where no logged-in user is found
+  if (!loggedInUser) {
+    alert("No logged-in user found. Please log in first.");
   }
 
+  const username = loggedInUser?.username;
+
+  // Load quizzes assigned to the logged-in user
   useEffect(() => {
     if (!username) {
       alert("No username provided.");
@@ -23,11 +26,9 @@ const UserQuiz = () => {
     }
 
     const quizzes = JSON.parse(localStorage.getItem("quizzes")) || [];
-    // Filter quizzes assigned to the logged-in user
     const userQuizzes = quizzes.filter((quiz) => quiz.assignedTo === username);
 
     if (userQuizzes.length > 0) {
-      // Merge all questions from the quizzes
       const allQuestions = userQuizzes.flatMap((quiz) => quiz.questions);
       setQuestions(allQuestions);
     } else {
@@ -35,6 +36,7 @@ const UserQuiz = () => {
     }
   }, [username]);
 
+  // Handle answer changes
   const handleAnswerChange = (questionId, value) => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers, // Keep existing answers
@@ -42,6 +44,7 @@ const UserQuiz = () => {
     }));
   };
 
+  // Handle quiz submission
   const handleSubmit = () => {
     setIsSubmitted(true);
     let calculatedScore = 0;
@@ -55,9 +58,16 @@ const UserQuiz = () => {
 
     setScore(calculatedScore);
     alert(`Quiz submitted! Your score: ${calculatedScore}/${questions.length}`);
-    localStorage.setItem(`submittedAnswers`, JSON.stringify(answers));
+    localStorage.setItem("submittedAnswers", JSON.stringify(answers));
   };
 
+  // Handle logout
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInUser");
+    navigate("/"); // Redirect to login page
+  };
+
+  // Show loading if questions are not loaded yet
   if (questions.length === 0) return <p>Loading quiz...</p>;
 
   return (
@@ -89,7 +99,7 @@ const UserQuiz = () => {
               <input
                 type="text"
                 className="form-control"
-                placeholder={`Answer for Question ${q.id}`}
+                placeholder={`Answer the Question here`}
                 value={answers[q.id] || ""} // Dynamically set value from the state
                 onChange={(e) => handleAnswerChange(q.id, e.target.value)} // Update specific question's answer
                 disabled={isSubmitted}
@@ -101,7 +111,7 @@ const UserQuiz = () => {
 
       {!isSubmitted ? (
         <button
-          className="btn btn-primary btn-block mt-4"
+          className="btn btn-primary btn-block m-4 "
           onClick={handleSubmit}
         >
           Submit
@@ -138,6 +148,13 @@ const UserQuiz = () => {
           </ul>
         </div>
       )}
+
+      <button
+        className="btn btn-danger btn-block m-4"
+        onClick={handleLogout}
+      >
+        Logout
+      </button>
     </div>
   );
 };

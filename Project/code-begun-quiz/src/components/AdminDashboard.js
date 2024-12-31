@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./AdminDashboard.css"; // Import the CSS file
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -19,26 +20,28 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="container mt-5 text-center">
-      <h2>Admin Dashboard</h2>
-      <div className="mt-4">
-        <button className="btn btn-primary me-3" onClick={handleCreateUser}>
-          Create User
-        </button>
-        <button
-          className="btn btn-secondary me-3"
-          onClick={handleCreateQuiz}
-          disabled={!usersExist}
-        >
-          Create Quiz
-        </button>
-        <button className="btn btn-danger" onClick={handleLogout}>
-          Logout
-        </button>
+    <div className="dashboard-container">
+      <div className="dashboard-card">
+        <h2 className="dashboard-title">Admin Dashboard</h2>
+        <div className="mt-4">
+          <button className="btn btn-primary btn-user" onClick={handleCreateUser}>
+            Create User
+          </button>
+          <button
+            className="btn btn-secondary btn-create"
+            onClick={handleCreateQuiz}
+            disabled={!usersExist}
+          >
+            Create Quiz
+          </button>
+          <button className="btn btn-danger btn-logout" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+        {!usersExist && (
+          <p className="text-muted mt-3">Add users before creating a quiz.</p>
+        )}
       </div>
-      {!usersExist && (
-        <p className="text-muted mt-3">Add users before creating a quiz.</p>
-      )}
     </div>
   );
 };

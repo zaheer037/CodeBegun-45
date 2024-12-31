@@ -41,16 +41,16 @@ const QuizCreation = () => {
 
   // Save quiz data to localStorage
   const handleSave = () => {
-    const quizData = {
-      quizName,
-      numQuestions,
-      questions,
-      isPublished: false,
-      assignedTo: selectedUser || null, // Associate user if selected
-    };
+    // const quizData = {
+    //   quizName,
+    //   numQuestions,
+    //   questions,
+    //   isPublished: false,
+    //   assignedTo: selectedUser || null, // Associate user if selected
+    // };
 
-    const existingQuizzes = JSON.parse(localStorage.getItem("quizzes")) || [];
-    localStorage.setItem("quizzes", JSON.stringify([...existingQuizzes, quizData]));
+    //const existingQuizzes = JSON.parse(localStorage.getItem("quizzes")) || [];
+    //localStorage.setItem("quizzes", JSON.stringify([...existingQuizzes, quizData]));
     alert("Quiz saved as a draft!");
   };
 
